@@ -6,7 +6,7 @@
     "price": 50000,
     "stock": 10,
     "category": "cabezales",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/cabezal%20invictus.WEBP"
+    "image": "/img/cabezal-invictus.webp"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "price": 45000,
     "stock": 10,
     "category": "cabezales",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/cabezal%20manus.jpg"
+    "image": "/img/cabezal-manus.jpg"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "price": 55000,
     "stock": 10,
     "category": "cabezales",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/cabezal%20primus.jpg"
+    "image": "/img/cabezal-primus.jpg"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "price": 48000,
     "stock": 10,
     "category": "cabezales",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/cabezal%20Sparring.JPG"
+    "image": "/img/cabezal-sparring.jpg"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "price": 38000,
     "stock": 10,
     "category": "guantes",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/guantes%20manus.JPG"
+    "image": "/img/guantes-manus.jpg"
   },
   {
     "id": 6,
@@ -51,7 +51,7 @@
     "price": 35000,
     "stock": 10,
     "category": "protecciones",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/pie%20invictus.JPG"
+    "image": "/img/pie-invictus.jpg"
   },
   {
     "id": 7,
@@ -60,7 +60,7 @@
     "price": 30000,
     "stock": 10,
     "category": "protecciones",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/pie%20sparring.JPG"
+    "image": "/img/pie-sparring.jpg"
   },
   {
     "id": 8,
@@ -69,6 +69,6 @@
     "price": 35000,
     "stock": 10,
     "category": "protecciones",
-    "image": "https://raw.githubusercontent.com/tkdbrian/talentotech/main/img/tibial%20sparring.JPG"
+    "image": "/img/tibial-sparring.jpg"
   }
 ]
