@@ -2,7 +2,7 @@ import { useCart } from "../../context/CartContext";
 import "./CartView.css";
 
 export const CartView = () => {
-  const { cart, removeItem, getCartTotal, getTotalItems, checkout } = useCart();
+  const { cart, addItem, decreaseItem, removeItem, getCartTotal, getTotalItems, checkout } = useCart();
 
   if (cart.length === 0) {
     return (
@@ -23,7 +23,13 @@ export const CartView = () => {
             <img src={item.image} alt={item.name} className="cart-item-img" />
             <div className="cart-item-info">
               <h3>{item.name}</h3>
-              <p>${item.price}</p>
+              <p>${item.price} c/u</p>
+              <p className="cart-item-subtotal">Subtotal: ${item.price * item.quantity}</p>
+            </div>
+            <div className="cart-item-quantity">
+              <button onClick={() => decreaseItem(item.id)}>-</button>
+              <span>{item.quantity}</span>
+              <button onClick={() => addItem(item)}>+</button>
             </div>
             <button
               className="cart-item-remove"
