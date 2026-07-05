@@ -1,25 +1,38 @@
-import { Routes, Route } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
+import { Login } from './components/Login/Login'
+import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
+import { AdminLayout } from './layouts/AdminLayout'
+import { Dashboard } from './components/adminComponents/Dashboard/Dashboard'
 import './App.css'
 
 function App() {
   return (
-    <>
-      <Header />
+    <Routes>
+      {/* RUTAS PÚBLICAS */}
+      <Route path="/" element={<><Header /><main><ItemListContainer /></main><Footer /></>} />
+      <Route path="/product/:id" element={<><Header /><main><ItemDetailContainer /></main><Footer /></>} />
+      <Route path="/carrito" element={<><Header /><main><p className="placeholder">Carrito (próximamente)</p></main><Footer /></>} />
 
-      <main>
-        <Routes>
-          <Route path="/" element={<ItemListContainer />} />
-          <Route path="/product/:id" element={<ItemDetailContainer />} />
-          <Route path="/carrito" element={<p className="placeholder">Carrito (próximamente)</p>} />
-        </Routes>
-      </main>
+      {/* LOGIN ADMIN */}
+      <Route path="/admin/login" element={<Login />} />
 
-      <Footer />
-    </>
+      {/* ADMIN PROTEGIDO */}
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }
+      >
+        <Route index element={<Navigate to="dashboard" />} />
+        <Route path="dashboard" element={<Dashboard />} />
+      </Route>
+    </Routes>
   )
 }
 
