@@ -1,31 +1,28 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import ItemList from '../ItemList/ItemList'
-import { getByCategory } from '../../services/productsService'
+import { useEffect, useState } from "react";
+import { ItemList } from "../ItemList/ItemList";
+import { getByCategory } from "../../services/productsService";
+import { useParams } from "react-router-dom";
 
-function ItemListContainer() {
-  const { category } = useParams()
-  const [products, setProducts] = useState([])
-  const [loading, setLoading] = useState(true)
+export const ItemListContainer = () => {
+  const { category } = useParams();
+
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
+
     getByCategory(category)
       .then((data) => setProducts(data))
-      .catch((error) => console.error('Error al cargar productos:', error))
-      .finally(() => setLoading(false))
-  }, [category])
+      .catch((err) => console.log("Hubo un error:", err))
+      .finally(() => setLoading(false));
+  }, [category]);
 
-  if (loading) {
-    return <p className="loading">Cargando productos...</p>
-  }
+  if (loading) return <p>Cargando...</p>;
 
   return (
-    <section className="list-container">
-      <h1>Productos</h1>
+    <section>
       <ItemList products={products} />
     </section>
-  )
-}
-
-export default ItemListContainer
+  );
+};

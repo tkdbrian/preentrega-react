@@ -6,11 +6,17 @@ import {
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/config";
 
+//creamos el contexto
 const AuthContext = createContext();
 
+//custom hook
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth debe usarse dentro de un AuthProvider");
+
+  if (!context) {
+    throw new Error("useAuth debe usarse dentro de un AuthProvider");
+  }
+
   return context;
 };
 
@@ -26,8 +32,9 @@ export const AuthProvider = ({ children }) => {
     return unsubscribe;
   }, []);
 
-  const login = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password);
+  const login = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
 
   const logout = async () => {
     try {

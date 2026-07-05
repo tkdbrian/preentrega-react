@@ -1,25 +1,19 @@
-import { Link } from 'react-router-dom'
-import Item from '../Item/Item'
-import './ItemList.css'
+import { Link } from "react-router-dom";
+import { Item } from "../Item/Item";
+import "./ItemList.css";
 
-function ItemList({ products }) {
+export const ItemList = ({ products }) => {
   if (!products.length) {
-    return <p>No hay productos disponibles.</p>
+    return <p>No hay productos</p>;
   }
 
   return (
     <div className="products-container">
       {products.map((product) => (
-        <Link
-          key={product.id}
-          to={`/product/${product.id}`}
-          className="product-link"
-        >
+        <Link to={`/product/${product.id}`} key={product.id}>
           <Item {...product} />
         </Link>
       ))}
     </div>
-  )
-}
-
-export default ItemList
+  );
+};

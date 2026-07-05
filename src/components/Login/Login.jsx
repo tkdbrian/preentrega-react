@@ -21,6 +21,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await login(formData.email, formData.password);
+      console.log("Login exitoso");
       navigate("/admin", { replace: true });
     } catch (error) {
       console.error(error);
@@ -32,9 +33,8 @@ export const Login = () => {
     <form onSubmit={handleSubmit} className="login-form">
       <h2>Iniciar sesión</h2>
       <div className="form-group">
-        <label htmlFor="email">Email</label>
+        <label>Email</label>
         <input
-          id="email"
           type="email"
           name="email"
           placeholder="Email"
@@ -43,9 +43,8 @@ export const Login = () => {
         />
       </div>
       <div className="form-group">
-        <label htmlFor="password">Password</label>
+        <label>Password</label>
         <input
-          id="password"
           type="password"
           name="password"
           placeholder="Password"

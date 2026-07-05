@@ -1,17 +1,14 @@
-import Item from '../Item/Item'
-import { useCart } from '../../context/CartContext'
-import './ItemDetail.css'
+import { useCart } from "../../context/CartContext";
+import { Item } from "../Item/Item";
 
-function ItemDetail({ item }) {
-  const { addItem } = useCart()
+export const ItemDetail = ({ item }) => {
+  const { addItem } = useCart();
 
   return (
-    <div className="detail-container">
-      <Item {...item}>
-        <button onClick={() => addItem(item)}>Agregar al carrito</button>
-      </Item>
-    </div>
-  )
-}
-
-export default ItemDetail
+    <Item {...item}>
+      <button className="btn bg-primary primary" onClick={() => addItem(item)}>
+        Agregar al carrito
+      </button>
+    </Item>
+  );
+};

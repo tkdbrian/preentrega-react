@@ -1,18 +1,13 @@
-import './Item.css'
+import "./Item.css";
 
-function Item({ name, description, price, image, stock, children }) {
+export const Item = ({ name, description, price, image, children }) => {
   return (
     <article className="card">
-      <img src={image} alt={name} className="card-img" />
-      <div className="card-body">
-        <h2 className="card-title">{name}</h2>
-        <p className="card-description">{description}</p>
-        <p className="card-price">${price}</p>
-        <p className="card-stock">Stock: {stock}</p>
-        {children}
-      </div>
+      <img src={image} alt={`foto de ${name}`} />
+      <h3>{name}</h3>
+      <p>{description}</p>
+      <p>${price}</p>
+      {children}
     </article>
-  )
-}
-
-export default Item
+  );
+};
