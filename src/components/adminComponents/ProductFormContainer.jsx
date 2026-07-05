@@ -1,30 +1,44 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { ProductFormUI } from "./ProductFormUI";
 import { validateProduct } from "../../utils/validateProduct";
-import { uploadImage } from "../../services/uploadImage";
-import { createProduct } from "../../services/productsService";
+import { createProduct, getProductById, updateProduct } from "../../services/productsService";
 import "./ProductFormContainer.css";
 
 export const ProductFormContainer = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const isEditing = Boolean(id);
+
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const [file, setFile] = useState(null);
   const [product, setProduct] = useState({
     name: "",
     price: "",
     category: "",
     description: "",
+    image: "",
   });
+
+  // Si estamos editando, precargamos el producto
+  useEffect(() => {
+    if (!isEditing) return;
+    getProductById(id).then((data) => {
+      if (data) {
+        setProduct({
+          name: data.name,
+          price: String(data.price),
+          category: data.category,
+          description: data.description,
+          image: data.image,
+        });
+      }
+    });
+  }, [id, isEditing]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProduct({ ...product, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0] || null);
   };
 
   const handleSubmit = async (e) => {
@@ -32,7 +46,7 @@ export const ProductFormContainer = () => {
     setErrors({});
     setLoading(true);
 
-    const newErrors = validateProduct({ ...product, file });
+    const newErrors = validateProduct(product);
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       setLoading(false);
@@ -40,17 +54,20 @@ export const ProductFormContainer = () => {
     }
 
     try {
-      const imageUrl = await uploadImage(file);
       const productData = {
         ...product,
         price: Number(product.price),
         stock: 10,
-        image: imageUrl,
       };
-      const id = await createProduct(productData);
-      setProduct({ name: "", price: "", category: "", description: "" });
-      setFile(null);
-      navigate(`/admin/products/success/${id}`, { replace: true });
+
+      if (isEditing) {
+        await updateProduct(id, productData);
+        navigate("/admin/products", { replace: true });
+      } else {
+        const newId = await createProduct(productData);
+        setProduct({ name: "", price: "", category: "", description: "", image: "" });
+        navigate(`/admin/products/success/${newId}`, { replace: true });
+      }
     } catch (error) {
       setErrors({ general: error.message });
     } finally {
@@ -63,8 +80,8 @@ export const ProductFormContainer = () => {
       product={product}
       errors={errors}
       loading={loading}
+      isEditing={isEditing}
       onChange={handleChange}
-      onFileChange={handleFileChange}
       onSubmit={handleSubmit}
     />
   );

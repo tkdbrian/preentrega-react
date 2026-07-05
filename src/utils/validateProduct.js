@@ -1,4 +1,4 @@
-export const validateProduct = ({ name, price, category, description, file }) => {
+export const validateProduct = ({ name, price, category, description, image }) => {
   const errors = {};
 
   if (!name || name.trim() === "") {
@@ -17,8 +17,8 @@ export const validateProduct = ({ name, price, category, description, file }) =>
     errors.description = "La descripción es obligatoria";
   }
 
-  if (!file) {
-    errors.file = "La imagen es obligatoria";
+  if (!image || image.trim() === "") {
+    errors.image = "La URL de imagen es obligatoria";
   }
 
   return errors;

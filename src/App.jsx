@@ -9,6 +9,7 @@ import { AdminLayout } from './layouts/AdminLayout'
 import { Dashboard } from './components/adminComponents/Dashboard/Dashboard'
 import { ProductFormContainer } from './components/adminComponents/ProductFormContainer'
 import { ProductSuccess } from './components/adminComponents/ProductSuccess'
+import { ProductAdminList } from './components/adminComponents/ProductAdminList'
 import './App.css'
 
 function App() {
@@ -36,7 +37,9 @@ function App() {
       >
         <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products" element={<ProductAdminList />} />
           <Route path="products/new" element={<ProductFormContainer />} />
+          <Route path="products/edit/:id" element={<ProductFormContainer />} />
           <Route path="products/success/:id" element={<ProductSuccess />} />
       </Route>
     </Routes>
