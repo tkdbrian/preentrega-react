@@ -1,11 +1,10 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import Header from './components/Header/Header'
-import Footer from './components/Footer/Footer'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import { CartView } from './components/Cart/CartView'
 import { Login } from './components/Login/Login'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
+import { PublicLayout } from './layouts/PublicLayout'
 import { AdminLayout } from './layouts/AdminLayout'
 import { Dashboard } from './components/adminComponents/Dashboard/Dashboard'
 import { ProductFormContainer } from './components/adminComponents/ProductFormContainer'
@@ -16,10 +15,12 @@ function App() {
   return (
     <Routes>
       {/* RUTAS PÚBLICAS */}
-      <Route path="/" element={<><Header /><main><ItemListContainer /></main><Footer /></>} />
-      <Route path="/category/:category" element={<><Header /><main><ItemListContainer /></main><Footer /></>} />
-      <Route path="/product/:id" element={<><Header /><main><ItemDetailContainer /></main><Footer /></>} />
-      <Route path="/carrito" element={<><Header /><main><CartView /></main><Footer /></>} />
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<ItemListContainer />} />
+        <Route path="/category/:category" element={<ItemListContainer />} />
+        <Route path="/product/:id" element={<ItemDetailContainer />} />
+        <Route path="/carrito" element={<CartView />} />
+      </Route>
 
       {/* LOGIN ADMIN */}
       <Route path="/admin/login" element={<Login />} />
