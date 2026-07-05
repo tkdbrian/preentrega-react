@@ -21,9 +21,11 @@
   margin: 0;
 }
 
-.dashboard-header-actions {
+.dashboard-header-actions,
+.header-actions {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .btn-secondary {
@@ -62,7 +64,8 @@
   color: #ccc;
 }
 
-.dashboard-quick-actions {
+.dashboard-quick-actions,
+.actions-grid {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
@@ -110,3 +113,21 @@
   margin: 0;
   color: #bbb;
 }
+
+.action-card {
+  flex: 1;
+  min-width: 120px;
+  padding: 1.5rem 1rem;
+  background: #2c2c2c;
+  color: #f0f0f0;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  text-align: center;
+  transition: background 0.2s;
+}
+
+.action-card:hover {
+  background: #3a3a3a;
+}
+
