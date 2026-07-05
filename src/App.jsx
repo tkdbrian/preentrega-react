@@ -8,6 +8,8 @@ import { Login } from './components/Login/Login'
 import { ProtectedRoute } from './components/ProtectedRoute/ProtectedRoute'
 import { AdminLayout } from './layouts/AdminLayout'
 import { Dashboard } from './components/adminComponents/Dashboard/Dashboard'
+import { ProductFormContainer } from './components/adminComponents/ProductFormContainer'
+import { ProductSuccess } from './components/adminComponents/ProductSuccess'
 import './App.css'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
     <Routes>
       {/* RUTAS PÚBLICAS */}
       <Route path="/" element={<><Header /><main><ItemListContainer /></main><Footer /></>} />
+      <Route path="/category/:category" element={<><Header /><main><ItemListContainer /></main><Footer /></>} />
       <Route path="/product/:id" element={<><Header /><main><ItemDetailContainer /></main><Footer /></>} />
       <Route path="/carrito" element={<><Header /><main><CartView /></main><Footer /></>} />
 
@@ -31,7 +34,9 @@ function App() {
         }
       >
         <Route index element={<Navigate to="dashboard" />} />
-        <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="products/new" element={<ProductFormContainer />} />
+          <Route path="products/success/:id" element={<ProductSuccess />} />
       </Route>
     </Routes>
   )

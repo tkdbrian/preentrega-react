@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import "./Dashboard.css";
 
@@ -28,7 +28,7 @@ export const Dashboard = () => {
       <div className="dashboard-body">
         <h3>Acciones rápidas</h3>
         <div className="dashboard-quick-actions">
-          <button className="btn-action">+ Cargar</button>
+          <Link to="/admin/products/new" className="btn-action">+ Cargar</Link>
           <button className="btn-action btn-disabled">✏️ Modificar</button>
           <button className="btn-action btn-disabled">🗑️ Eliminar</button>
         </div>

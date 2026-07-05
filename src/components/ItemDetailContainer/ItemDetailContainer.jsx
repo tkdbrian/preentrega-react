@@ -1,32 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemDetail from '../ItemDetail/ItemDetail'
+import { getProductById } from '../../services/productsService'
 
 function ItemDetailContainer() {
+  const { id } = useParams()
   const [itemDetail, setItemDetail] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const { id } = useParams()
-
   useEffect(() => {
-    fetch('/data/products.json')
-      .then((response) => response.json())
-      .then((data) => {
-        const item = data.find((element) => String(element.id) === id)
-
-        if (item) {
-          setItemDetail(item)
-          return
-        }
-
-        throw new Error('Producto no encontrado')
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    getProductById(id)
+      .then((data) => setItemDetail(data))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false))
   }, [id])
 
   if (loading) {
