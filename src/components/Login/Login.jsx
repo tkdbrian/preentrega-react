@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import "./Login.css";
 
 export const Login = () => {
-  const { login } = useAuth();
+  const { login, user, loading } = useAuth();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
+  // Si ya está logueado, redirigir al dashboard
+  if (loading) return null;
+  if (user) return <Navigate to="/admin/dashboard" replace />;
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
