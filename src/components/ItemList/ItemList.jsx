@@ -10,7 +10,7 @@ export const ItemList = ({ products }) => {
   return (
     <div className="products-container">
       {products.map((product) => (
-        <Link to={`/product/${product.id}`} key={product.id}>
+        <Link to={`/product/${product.id}`} key={product.id} className="product-link">
           <Item {...product} />
         </Link>
       ))}

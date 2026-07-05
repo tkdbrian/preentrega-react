@@ -5,11 +5,9 @@ import "./Header.css";
 export const Header = () => {
   return (
     <header className="header">
-      <div className="logo-container">
-        <Link to="/">
-          <span className="logo-text">TKD Store</span>
-        </Link>
-      </div>
+      <Link to="/" className="logo-container">
+        <span className="logo-text">TKD Store</span>
+      </Link>
       <NavBar />
     </header>
   );
