@@ -11,7 +11,6 @@ export const Login = () => {
   // Si ya está logueado, redirigir al dashboard
   if (loading) return null;
   if (user) return <Navigate to="/admin/dashboard" replace />;
-  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
