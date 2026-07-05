@@ -16,3 +16,15 @@
 .navbar-link:hover {
   color: #fff;
 }
+
+.cart-badge {
+  display: inline-block;
+  background: #5aa3ff;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
